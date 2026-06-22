@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Date Game</title>
+
+<style>
+body {
+    font-family: Arial;
+    text-align: center;
+    margin-top: 80px;
+}
+
+button {
+    font-size: 20px;
+    padding: 10px 40px;
+    margin: 20px;
+}
+</style>
+
+</head>
+
+<body>
+
+<h1>Date Game</h1>
+
+<h2 id="question"></h2>
+
+<button onclick="answer('ano')">Ano</button>
+<button onclick="answer('ne')">Ne</button>
+
+
+<script>
+
+const questions = [
+    "Jsi emočně stabilní?",
+    "Respektuješ hranice cizích vztahů?",
+    "Respektuješ, že moje dítě má otce?",
+    "Projevuješ žárlivost vůči minulosti?",
+    "Máš potřebu soutěžit s bývalým partnerem?",
+    "Komunikuješ napřímo a klidně?",
+    "Máš potřebu vyvolávat zbytečné konflikty?",
+    "Dodržuješ to co slíbíš?",
+    "Přijímáš realitu tak jak je?",
+    "Máš zvládnuté vlastní ego?"
+];
+
+
+let answers = [];
+let index = 0;
+
+
+document.getElementById("question").innerText = questions[index];
+
+
+function answer(value) {
+
+    answers.push(value);
+
+
+    if(index < questions.length - 1) {
+
+        index++;
+
+        document.getElementById("question").innerText =
+            questions[index];
+
+    } else {
+
+        let yes = answers.filter(x => x === "ano").length;
+
+
+        let result;
+
+
+        if(yes == 10) {
+            result =
+            "Gratuluji! Vstupním testem si prošel naprosto bez chyb. :)";
+        }
+
+        else if(yes > 7) {
+            result =
+            "Vstupním testem si prošel, ale bylo to jen tak tak..";
+        }
+
+        else {
+            result =
+            "Je mi líto, ale vstupním testem si neprošel.";
+        }
+
+
+        document.body.innerHTML =
+        `
+        <h1>Výsledek</h1>
+        <h2>Ano: ${yes}/10</h2>
+        <p>${result}</p>
+        `;
+
+    }
+
+}
+
+</script>
+
+
+</body>
+</html>
